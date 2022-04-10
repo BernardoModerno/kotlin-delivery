@@ -1,0 +1,2 @@
+No res/drawable -> botão direito -> new -> vector assets
+No res/values -> colors -> add color
