@@ -1,2 +1,5 @@
 No res/drawable -> botão direito -> new -> vector assets
 No res/values -> colors -> add color
+No res/values/ theme => NoActionBar
+No res -> New -> New Android Resource directory com nome font
+No res/drawable -> new drawable Resource file com nome de rounded_button
