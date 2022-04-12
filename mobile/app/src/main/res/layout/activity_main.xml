@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,10 +24,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Entre com seu email e senha"
-            android:fontFamily="@font/roboto_regular"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp" />
-        
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto_regular"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -50,7 +50,9 @@
             android:inputType="textPassword"
             android:textSize="15sp"
             android:padding="15dp"
-            android:background="@drawable/edittext_custom" />
+            android:background="@drawable/edittext_custom"
+            />
+
 
     </LinearLayout>
 
@@ -64,23 +66,28 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar Sessão"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:text="INICIAR SESSÃO"
+            android:layout_marginTop="200dp"
             android:backgroundTint="@color/green"
             android:background="@drawable/rounded_button"
             />
+
         <ImageView
+            android:id="@+id/imageview_go_to_register"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_arrow_right"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registre-se aqui"
             android:layout_marginBottom="20dp"/>
+
+
     </LinearLayout>
 
 
