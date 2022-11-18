@@ -1,4 +1,4 @@
-package com.optic.kotlinudemydelivery
+package com.optic.deliverykotlinudemy
 
 import org.junit.Test
 
