@@ -3,6 +3,7 @@ package com.optic.deliverykotlinudemy.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -34,11 +35,36 @@ class MainActivity : AppCompatActivity() {
         val email = editTextEmail?.text.toString() // NULL POINTER EXCEPTION
         val password = editTextPassword?.text.toString()
 
-        Toast.makeText(this, "O email é: $email", Toast.LENGTH_LONG).show()
-        Toast.makeText(this, "O password é: $password", Toast.LENGTH_LONG).show()
+        if (isValidForm(email, password)) {
+            Toast.makeText(this, "O formulário é válido", Toast.LENGTH_LONG).show()
+        }
+        else {
+            Toast.makeText(this, "No é valido", Toast.LENGTH_LONG).show()
+        }
 
         Log.d("MainActivity", "O email é: $email")
         Log.d("MainActivity", "O password é: $password")
+    }
+
+    fun String.isEmailValid(): Boolean {
+        return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    }
+
+    private fun isValidForm(email: String, password: String): Boolean {
+
+        if (email.isBlank()) {
+            return false
+        }
+
+        if (password.isBlank()) {
+            return false
+        }
+
+        if (!email.isEmailValid()) {
+            return false
+        }
+
+        return true
     }
 
     private fun goToRegister() {

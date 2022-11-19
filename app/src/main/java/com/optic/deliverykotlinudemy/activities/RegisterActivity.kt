@@ -3,10 +3,12 @@ package com.optic.deliverykotlinudemy.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import com.optic.deliverykotlinudemy.R
 
 class RegisterActivity : AppCompatActivity() {
@@ -40,6 +42,7 @@ class RegisterActivity : AppCompatActivity() {
         buttonRegister?.setOnClickListener { register() }
     }
 
+
     private fun register() {
         val name = editTextName?.text.toString()
         val lastname = editTextLastname?.text.toString()
@@ -47,14 +50,75 @@ class RegisterActivity : AppCompatActivity() {
         val phone = editTextPhone?.text.toString()
         val password = editTextPassword?.text.toString()
         val confirmPassword = editTextConfirmPassword?.text.toString()
+        
+        if (isValidForm(name = name, phone = phone, lastname = lastname, email = email, password = password, confirmPassword = confirmPassword)) {
+            Toast.makeText(this, "O formulário é válido", Toast.LENGTH_SHORT).show()
+        }
+        
 
-        Log.d(TAG, "O nome é: $name")
+        Log.d(TAG, "O nombre é: $name")
         Log.d(TAG, "O sobrenome é: $lastname")
         Log.d(TAG, "O email é: $email")
         Log.d(TAG, "O Telefone é: $phone")
         Log.d(TAG, "O password é: $password")
         Log.d(TAG, "O confirm password é: $confirmPassword")
 
+    }
+
+    fun String.isEmailValid(): Boolean {
+        return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    }
+
+    private fun isValidForm(
+        name: String,
+        lastname: String,
+        email: String,
+        phone: String,
+        password: String,
+        confirmPassword: String
+    ): Boolean {
+
+        if (name.isBlank()) {
+            Toast.makeText(this, "Deve entrar com o nome", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        if (lastname.isBlank()) {
+            Toast.makeText(this, "Deve entrar com o sobrenome", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        if (phone.isBlank()) {
+            Toast.makeText(this, "Deve entrar com o telefone", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        if (email.isBlank()) {
+            Toast.makeText(this, "Deve entrar com o email", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (password.isBlank()) {
+            Toast.makeText(this, "Deve entrar com a senha", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        if (confirmPassword.isBlank()) {
+            Toast.makeText(this, "Deve entrar com a confirmação de senha", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (!email.isEmailValid()) {
+            Toast.makeText(this, "O email não é válido", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        if (password != confirmPassword) {
+            Toast.makeText(this, "As senhas não coincidem", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        return true
     }
 
     private fun goToLogin() {
