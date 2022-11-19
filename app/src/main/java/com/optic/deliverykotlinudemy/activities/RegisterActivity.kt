@@ -10,6 +10,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.optic.deliverykotlinudemy.R
+import com.optic.deliverykotlinudemy.models.ResponseHttp
+import com.optic.deliverykotlinudemy.models.User
+import com.optic.deliverykotlinudemy.providers.UsersProvider
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -23,6 +29,8 @@ class RegisterActivity : AppCompatActivity() {
     var editTextPassword: EditText? = null
     var editTextConfirmPassword: EditText? = null
     var buttonRegister: Button? = null
+
+    var usersProvider = UsersProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,16 +60,32 @@ class RegisterActivity : AppCompatActivity() {
         val confirmPassword = editTextConfirmPassword?.text.toString()
         
         if (isValidForm(name = name, phone = phone, lastname = lastname, email = email, password = password, confirmPassword = confirmPassword)) {
-            Toast.makeText(this, "O formulário é válido", Toast.LENGTH_SHORT).show()
-        }
-        
 
-        Log.d(TAG, "O nombre é: $name")
-        Log.d(TAG, "O sobrenome é: $lastname")
-        Log.d(TAG, "O email é: $email")
-        Log.d(TAG, "O Telefone é: $phone")
-        Log.d(TAG, "O password é: $password")
-        Log.d(TAG, "O confirm password é: $confirmPassword")
+            val user = User(
+                name = name,
+                lastname = lastname,
+                email = email,
+                phone = phone,
+                password = password
+            )
+
+            usersProvider.register(user)?.enqueue(object: Callback<ResponseHttp> {
+                override fun onResponse(call: Call<ResponseHttp>, response: Response<ResponseHttp>) {
+
+                    Toast.makeText(this@RegisterActivity, response.body()?.message, Toast.LENGTH_LONG).show()
+
+                    Log.d(TAG, "Response: ${response}" )
+                    Log.d(TAG, "Body: ${response.body()}" )
+                }
+
+                override fun onFailure(p0: Call<ResponseHttp>, t: Throwable) {
+                    Log.d(TAG, "Houve error ${t.message}")
+                    Toast.makeText(this@RegisterActivity, "Houve error ${t.message}", Toast.LENGTH_LONG).show()
+                }
+
+            })
+
+        }
 
     }
 
