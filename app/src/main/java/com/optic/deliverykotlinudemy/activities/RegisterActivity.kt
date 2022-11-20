@@ -9,10 +9,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.google.gson.Gson
 import com.optic.deliverykotlinudemy.R
+import com.optic.deliverykotlinudemy.activities.client.home.ClientHomeActivity
 import com.optic.deliverykotlinudemy.models.ResponseHttp
 import com.optic.deliverykotlinudemy.models.User
 import com.optic.deliverykotlinudemy.providers.UsersProvider
+import com.optic.deliverykotlinudemy.utils.SharedPref
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,6 +75,11 @@ class RegisterActivity : AppCompatActivity() {
             usersProvider.register(user)?.enqueue(object: Callback<ResponseHttp> {
                 override fun onResponse(call: Call<ResponseHttp>, response: Response<ResponseHttp>) {
 
+                    if (response.body()?.isSuccess == true) {
+                        saveUserInSession(response.body()?.data.toString())
+                        goToClientHome()
+                    }
+
                     Toast.makeText(this@RegisterActivity, response.body()?.message, Toast.LENGTH_LONG).show()
 
                     Log.d(TAG, "Response: ${response}" )
@@ -87,6 +95,19 @@ class RegisterActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun goToClientHome() {
+        val i = Intent(this, ClientHomeActivity::class.java)
+        startActivity(i)
+    }
+
+    private fun saveUserInSession(data: String) {
+
+        val sharedPref = SharedPref(this)
+        val gson = Gson()
+        val user = gson.fromJson(data, User::class.java)
+        sharedPref.save("user", user)
     }
 
     fun String.isEmailValid(): Boolean {
