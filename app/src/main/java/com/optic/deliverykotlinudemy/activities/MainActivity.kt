@@ -9,9 +9,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.google.gson.Gson
 import com.optic.deliverykotlinudemy.R
+import com.optic.deliverykotlinudemy.activities.client.home.ClientHomeActivity
 import com.optic.deliverykotlinudemy.models.ResponseHttp
+import com.optic.deliverykotlinudemy.models.User
 import com.optic.deliverykotlinudemy.providers.UsersProvider
+import com.optic.deliverykotlinudemy.utils.SharedPref
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         imageViewGoToRegister?.setOnClickListener { goToRegister() }
         buttonLogin?.setOnClickListener { login() }
+
+        getUserFromSession()
     }
 
     private fun login() {
@@ -50,6 +56,8 @@ class MainActivity : AppCompatActivity() {
 
                     if (response.body()?.isSuccess == true) {
                         Toast.makeText(this@MainActivity, response.body()?.message, Toast.LENGTH_LONG).show()
+                        saveUserInSession(response.body()?.data.toString())
+                        goToClientHome()
                     }
                     else {
                         Toast.makeText(this@MainActivity, "Os dados não estão corretos", Toast.LENGTH_LONG).show()
@@ -72,8 +80,34 @@ class MainActivity : AppCompatActivity() {
 //        Log.d("MainActivity", "El password es: $password")
     }
 
+    private fun goToClientHome() {
+        val i = Intent(this, ClientHomeActivity::class.java)
+        startActivity(i)
+    }
+
+    private fun saveUserInSession(data: String) {
+
+        val sharedPref = SharedPref(this)
+        val gson = Gson()
+        val user = gson.fromJson(data, User::class.java)
+        sharedPref.save("user", user)
+    }
+
     fun String.isEmailValid(): Boolean {
         return !TextUtils.isEmpty(this) && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    }
+
+    private fun getUserFromSession() {
+
+        val sharedPref = SharedPref(this)
+        val gson = Gson()
+
+        if (!sharedPref.getData("user").isNullOrBlank()) {
+            // SI EL USARIO EXISTE EN SESION
+            val user = gson.fromJson(sharedPref.getData("user"), User::class.java)
+            goToClientHome()
+        }
+
     }
 
     private fun isValidForm(email: String, password: String): Boolean {
