@@ -1,6 +1,8 @@
 package com.optic.deliverykotlinudemy.activities
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,6 +14,8 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.optic.deliverykotlinudemy.R
 import com.optic.deliverykotlinudemy.activities.client.home.ClientHomeActivity
+import com.optic.deliverykotlinudemy.activities.delivery.home.DeliveryHomeActivity
+import com.optic.deliverykotlinudemy.activities.restaurant.home.RestaurantHomeActivity
 import com.optic.deliverykotlinudemy.models.ResponseHttp
 import com.optic.deliverykotlinudemy.models.User
 import com.optic.deliverykotlinudemy.providers.UsersProvider
@@ -82,11 +86,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToClientHome() {
         val i = Intent(this, ClientHomeActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK // Eliminar el historial de pantallas
+        startActivity(i)
+    }
+
+    private fun goToRestaurantHome() {
+        val i = Intent(this, RestaurantHomeActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK // Eliminar el historial de pantallas
+        startActivity(i)
+    }
+
+    private fun goToDeliveryHome() {
+        val i = Intent(this, DeliveryHomeActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK // Eliminar el historial de pantallas
         startActivity(i)
     }
 
     private fun goToSelectRol() {
         val i = Intent(this, SelectRolesActivity::class.java)
+        i.flags = FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK // Eliminar el historial de pantallas
         startActivity(i)
     }
 
@@ -100,7 +118,7 @@ class MainActivity : AppCompatActivity() {
         if (user.roles?.size!! > 1) { // TEM MAIS DE UM ROL
             goToSelectRol()
         }
-        else { // SÓ UM ROL (CLIENTE)
+        else { // SOLO UN ROL (CLIENTE)
             goToClientHome()
         }
 
@@ -116,9 +134,32 @@ class MainActivity : AppCompatActivity() {
         val gson = Gson()
 
         if (!sharedPref.getData("user").isNullOrBlank()) {
+
             // SE USUARIO EXISTE EM SESSÃO
             val user = gson.fromJson(sharedPref.getData("user"), User::class.java)
-            goToClientHome()
+
+            if (!sharedPref.getData("rol").isNullOrBlank()) {
+
+                // SI EL USUARIO SELECCIONO EL ROL
+                val rol = sharedPref.getData("rol")?.replace("\"", "")
+                Log.d("MainActivity", "ROL $rol")
+
+
+                if (rol == "RESTAURANTE") {
+                    goToRestaurantHome()
+                }
+                else if (rol == "CLIENTE") {
+                    goToClientHome()
+                }
+                else if (rol == "ENTREGADOR"){
+                    goToDeliveryHome()
+                }
+            }
+            else {
+                Log.d("MainActivity", "ROL NÃO EXISTE")
+                goToClientHome()
+            }
+
         }
 
     }
