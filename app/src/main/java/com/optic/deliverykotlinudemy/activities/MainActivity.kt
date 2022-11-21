@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                     if (response.body()?.isSuccess == true) {
                         Toast.makeText(this@MainActivity, response.body()?.message, Toast.LENGTH_LONG).show()
                         saveUserInSession(response.body()?.data.toString())
-                        goToClientHome()
+
                     }
                     else {
                         Toast.makeText(this@MainActivity, "Os dados não estão corretos", Toast.LENGTH_LONG).show()
@@ -85,12 +85,25 @@ class MainActivity : AppCompatActivity() {
         startActivity(i)
     }
 
+    private fun goToSelectRol() {
+        val i = Intent(this, SelectRolesActivity::class.java)
+        startActivity(i)
+    }
+
     private fun saveUserInSession(data: String) {
 
         val sharedPref = SharedPref(this)
         val gson = Gson()
         val user = gson.fromJson(data, User::class.java)
         sharedPref.save("user", user)
+
+        if (user.roles?.size!! > 1) { // TEM MAIS DE UM ROL
+            goToSelectRol()
+        }
+        else { // SÓ UM ROL (CLIENTE)
+            goToClientHome()
+        }
+
     }
 
     fun String.isEmailValid(): Boolean {
@@ -103,7 +116,7 @@ class MainActivity : AppCompatActivity() {
         val gson = Gson()
 
         if (!sharedPref.getData("user").isNullOrBlank()) {
-            // SI EL USARIO EXISTE EN SESION
+            // SE USUARIO EXISTE EM SESSÃO
             val user = gson.fromJson(sharedPref.getData("user"), User::class.java)
             goToClientHome()
         }
