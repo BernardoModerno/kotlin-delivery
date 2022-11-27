@@ -64,21 +64,21 @@ class MainActivity : AppCompatActivity() {
 
                     }
                     else {
-                        Toast.makeText(this@MainActivity, "Os dados não estão corretos", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@MainActivity, "Los datos no son correctos", Toast.LENGTH_LONG).show()
                     }
 
                 }
 
                 override fun onFailure(p0: Call<ResponseHttp>, t: Throwable) {
-                    Log.d("MainActivity", "Houve um erro ${t.message}")
-                    Toast.makeText(this@MainActivity, "Houve um erro ${t.message}", Toast.LENGTH_LONG).show()
+                    Log.d("MainActivity", "Hubo un error ${t.message}")
+                    Toast.makeText(this@MainActivity, "Hubo un error ${t.message}", Toast.LENGTH_LONG).show()
                 }
 
             })
 
         }
         else {
-            Toast.makeText(this, "Não é válido", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "No es valido", Toast.LENGTH_LONG).show()
         }
 
 //        Log.d("MainActivity", "El password es: $password")
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         val user = gson.fromJson(data, User::class.java)
         sharedPref.save("user", user)
 
-        if (user.roles?.size!! > 1) { // TEM MAIS DE UM ROL
+        if (user.roles?.size!! > 1) { // TIENE MAS DE UN ROL
             goToSelectRol()
         }
         else { // SOLO UN ROL (CLIENTE)
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
 
         if (!sharedPref.getData("user").isNullOrBlank()) {
 
-            // SE USUARIO EXISTE EM SESSÃO
+            // SI EL USARIO EXISTE EN SESION
             val user = gson.fromJson(sharedPref.getData("user"), User::class.java)
 
             if (!sharedPref.getData("rol").isNullOrBlank()) {
@@ -151,12 +151,12 @@ class MainActivity : AppCompatActivity() {
                 else if (rol == "CLIENTE") {
                     goToClientHome()
                 }
-                else if (rol == "ENTREGADOR"){
+                else if (rol == "REPARTIDOR"){
                     goToDeliveryHome()
                 }
             }
             else {
-                Log.d("MainActivity", "ROL NÃO EXISTE")
+                Log.d("MainActivity", "ROL NO EXISTE")
                 goToClientHome()
             }
 

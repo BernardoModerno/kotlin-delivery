@@ -3,14 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/projetos/kotlin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
-        <entry key="..\:/projetos/kotlin/app/src/main/res/drawable/ic_arrow_left.xml" value="0.1" />
-        <entry key="..\:/projetos/kotlin/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
-        <entry key="..\:/projetos/kotlin/app/src/main/res/drawable/rounded_button.xml" value="0.1" />
-        <entry key="..\:/projetos/kotlin/app/src/main/res/layout/activity_delivery_home.xml" value="0.1" />
-        <entry key="..\:/projetos/kotlin/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
-        <entry key="..\:/projetos/kotlin/app/src/main/res/layout/activity_register.xml" value="0.1" />
-        <entry key="..\:/projetos/kotlin/app/src/main/res/layout/activity_restaurant_home.xml" value="0.1" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/drawable/edittext_custom.xml" value="0.23125" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/drawable/rounded_button.xml" value="0.23125" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/activity_client_home.xml" value="0.18857142857142858" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/activity_delivery_home.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/activity_main.xml" value="0.18857142857142858" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/activity_register.xml" value="0.18857142857142858" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/activity_restaurant_home.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/activity_save_image.xml" value="0.18857142857142858" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/activity_select_roles.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/cardview_roles.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/fragment_client_categories.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/fragment_client_orders.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/fragment_client_profile.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/fragment_delivery_orders.xml" value="0.20104166666666667" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/fragment_restaurant_category.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/fragment_restaurant_orders.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/layout/fragment_restaurant_product.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/menu/bottom_navigation_menu_client.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/menu/bottom_navigation_menu_delivery.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/Jonathan/Documents/PROGRAMACION/DeliveryKotlinUdemy/app/src/main/res/menu/bottom_navigation_menu_restaurant.xml" value="0.22708333333333333" />
       </map>
     </option>
   </component>

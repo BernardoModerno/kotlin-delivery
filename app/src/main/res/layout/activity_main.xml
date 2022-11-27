@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Entre com seu email e senha"
+            android:text="Ingresa con tu correo y contraseña"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/roboto_regular"/>
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:text="INICIAR SESSÃO"
+            android:text="INICIAR SESION"
             android:layout_marginTop="200dp"
             android:backgroundTint="@color/green"
             android:background="@drawable/rounded_button"
@@ -87,7 +87,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registrar-se aqui"
+            android:text="Registrate aqui"
             android:layout_marginBottom="20dp"/>
 
 

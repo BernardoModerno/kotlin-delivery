@@ -87,8 +87,8 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(p0: Call<ResponseHttp>, t: Throwable) {
-                    Log.d(TAG, "Houve error ${t.message}")
-                    Toast.makeText(this@RegisterActivity, "Houve error ${t.message}", Toast.LENGTH_LONG).show()
+                    Log.d(TAG, "Se produjo un error ${t.message}")
+                    Toast.makeText(this@RegisterActivity, "Se produjo un error ${t.message}", Toast.LENGTH_LONG).show()
                 }
 
             })
@@ -98,7 +98,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun goToClientHome() {
-        val i = Intent(this, ClientHomeActivity::class.java)
+        val i = Intent(this, SaveImageActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Eliminar el historial de pantallas
         startActivity(i)
     }
 
@@ -124,42 +125,42 @@ class RegisterActivity : AppCompatActivity() {
     ): Boolean {
 
         if (name.isBlank()) {
-            Toast.makeText(this, "Deve entrar com o nome", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Debes ingresar el nombre", Toast.LENGTH_SHORT).show()
             return false
         }
         
         if (lastname.isBlank()) {
-            Toast.makeText(this, "Deve entrar com o sobrenome", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Debes ingresar el apellido", Toast.LENGTH_SHORT).show()
             return false
         }
         
         if (phone.isBlank()) {
-            Toast.makeText(this, "Deve entrar com o telefone", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Debes ingresar el telefono", Toast.LENGTH_SHORT).show()
             return false
         }
         
         if (email.isBlank()) {
-            Toast.makeText(this, "Deve entrar com o email", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Debes ingresar el email", Toast.LENGTH_SHORT).show()
             return false
         }
 
         if (password.isBlank()) {
-            Toast.makeText(this, "Deve entrar com a senha", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Debes ingresar el contraseña", Toast.LENGTH_SHORT).show()
             return false
         }
         
         if (confirmPassword.isBlank()) {
-            Toast.makeText(this, "Deve entrar com a confirmação de senha", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Debes ingresar el la confirmacion de contraseña", Toast.LENGTH_SHORT).show()
             return false
         }
 
         if (!email.isEmailValid()) {
-            Toast.makeText(this, "O email não é válido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "El email no es valido", Toast.LENGTH_SHORT).show()
             return false
         }
         
         if (password != confirmPassword) {
-            Toast.makeText(this, "As senhas não coincidem", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
             return false
         }
         

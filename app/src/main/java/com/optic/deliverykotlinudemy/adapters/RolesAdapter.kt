@@ -54,9 +54,9 @@ class RolesAdapter(val context: Activity, val roles: ArrayList<Rol>): RecyclerVi
             val i = Intent(context, ClientHomeActivity::class.java)
             context.startActivity(i)
         }
-        else if (rol.name == "ENTREGADOR") {
+        else if (rol.name == "REPARTIDOR") {
 
-            sharedPref.save("rol", "ENTREGADOR")
+            sharedPref.save("rol", "REPARTIDOR")
 
             val i = Intent(context, DeliveryHomeActivity::class.java)
             context.startActivity(i)
