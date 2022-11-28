@@ -15,6 +15,7 @@ import com.google.gson.Gson
 import com.optic.deliverykotlinudemy.R
 import com.optic.deliverykotlinudemy.activities.MainActivity
 import com.optic.deliverykotlinudemy.activities.SelectRolesActivity
+import com.optic.deliverykotlinudemy.activities.client.update.ClientUpdateActivity
 import com.optic.deliverykotlinudemy.models.User
 import com.optic.deliverykotlinudemy.utils.SharedPref
 import de.hdodenhof.circleimageview.CircleImageView
@@ -52,6 +53,7 @@ class ClientProfileFragment : Fragment() {
 
         buttonSelectRol?.setOnClickListener { goToSelectRol() }
         imageViewLogout?.setOnClickListener { logout() }
+        buttonUpdateProfile?.setOnClickListener { goToUpdate() }
 
         getUserFromSession()
 
@@ -81,6 +83,11 @@ class ClientProfileFragment : Fragment() {
             user = gson.fromJson(sharedPref?.getData("user"), User::class.java)
         }
 
+    }
+
+    private fun goToUpdate() {
+        val i = Intent(requireContext(), ClientUpdateActivity::class.java)
+        startActivity(i)
     }
 
     private fun goToSelectRol() {
